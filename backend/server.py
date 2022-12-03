@@ -3,8 +3,6 @@
 from flask import Flask, request, render_template, jsonify, json, Response
 import jsonpickle
 from flask_cors import CORS, cross_origin
-import datetime
-
 # Initializing flask app  
 app = Flask(__name__)
 CORS(app, support_credentials=True)
@@ -13,7 +11,7 @@ CORS(app, support_credentials=True)
 # Route for seeing a data
 @app.route('/data', methods=['POST'])
 @cross_origin(origin="*", headers=["Content-Type"])
-def get_time():
+def get_data():
     data = request.get_json()
     email = data['users'][0]['email']
     password = data['users'][0]['password']
