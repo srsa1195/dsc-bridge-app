@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   BoldLink,
   BoxContainer,
@@ -14,14 +15,24 @@ export function LoginForm(props) {
   const navigate = useNavigate();
   const { switchToSignup } = useContext(AccountContext);
   const [user, setUser] = useState({email: "", password: ""}); 
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: '', 
+      password: ''
+    }
+  });
+  const onSubmit = (data, e)=>{
+        // make API call
+        handleClick(e);
+        console.log(data, e);
+    
+  }
   const handleChange = (event) => {
     setUser({ ...user,[event.target.name]: event.target.value});
 
   }
   const handleClick = async event => {
     event.preventDefault();
-    // console.log("user created", user)
-    // console.log(JSON.stringify(user));
     const result = await 
     // Send data to the backend via POST
     fetch('http://localhost:8080/login', {  // Enter your IP address here
@@ -39,6 +50,7 @@ export function LoginForm(props) {
     navigate('/map');
   };
   return (
+    <form onSubmit={handleSubmit(onSubmit)}>
     <BoxContainer>
       <FormContainer>
       <Input
@@ -47,6 +59,7 @@ export function LoginForm(props) {
         name="email"
         placeholder="Email"
         value={user.email}
+        {...register("email", { required: true })}
         onChange={handleChange}
       />
       <Input
@@ -55,13 +68,14 @@ export function LoginForm(props) {
         name="password"
         placeholder="Password"
         value={user.password}
+        {...register("password", { required: true })}
         onChange={handleChange}
       />
       </FormContainer>
       <Marginer direction="vertical" margin={10} />
       <MutedLink href="#">Forget your password?</MutedLink>
       <Marginer direction="vertical" margin="1.6em" />
-      <SubmitButton type="submit" onClick={handleClick}>Sign In</SubmitButton>
+      <SubmitButton type="submit">Sign In</SubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <MutedLink href="#">
         Don't have an accoun?{" "}
@@ -70,5 +84,6 @@ export function LoginForm(props) {
         </BoldLink>
       </MutedLink>
     </BoxContainer>
+    </form>
   );
 }
