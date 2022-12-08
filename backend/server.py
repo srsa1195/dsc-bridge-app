@@ -6,8 +6,11 @@ from Getdatabase import check_creds , insert_person_data , add_creds , get_perso
 import jsonpickle, pickle
 import platform
 import io, os, sys
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app=app)
+
 
 @app.route('/', methods=['GET'])
 def hello():
