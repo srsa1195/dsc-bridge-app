@@ -75,19 +75,27 @@ def add_creds(person_data):
     print(person_data['email'])
     print(person_data['password'])
     creds = {
-        "Username" : person_data['username'],
+        "Username" : person_data['email'],
         "Password" : person_data['password']
     }
     collection_name.insert_one(creds)
 
 
-def find_similar_data(person_id,params):
+def find_similar_data(params):
     gender_interest = params['gender']
     ethnicity_interest = params['ethnicity']
-    
+    interests = params['interests']
+    collection_name = dbname["people_database"]
+    similar_people = collection_name.find({"Gender_Interest":gender_interest,"Interested_Ethnicity":ethnicity_interest,
+    "Interests":interests})
+    return similar_people
+
+
 
 if __name__ == "__main__":   
-    person_data={'name':'Harsha','place':'Boulder','ethnicity':'Indian','interests':['reading','music'],'gender':'female'
-    ,'gender_interest':'male','age':23,'username':'hkalmath','password':'123456'}
+    #person_data={'name':'Harsha','place':'Boulder','ethnicity':'Indian','interests':['reading','music'],'gender':'female'
+    #,'gender_interest':'male','age':23,'username':'hkalmath','password':'123456'}
     #insert_person_data(person_data=person_data)
-    add_creds(person_data=person_data)
+    #add_creds(person_data=person_data)
+    params = {"gender":"female","ethnicity":{"asian","white"},"interests":{"cooking","dancing"}}
+    find_similar_data(params)
