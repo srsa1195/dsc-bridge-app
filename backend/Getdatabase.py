@@ -61,7 +61,7 @@ def add_filters(person_id,filters):
 
 
 def check_creds(person_data):
-    myquery = {"username" : person_data['email'], "password" : person_data['password']}
+    myquery = {"email" : person_data['email'], "password" : person_data['password']}
     collection_name = dbname['login_database']
     mydoc = collection_name.find(myquery)
     if (pd.isnull(mydoc)):
