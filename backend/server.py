@@ -56,7 +56,7 @@ def set_ethnicityInterest():
 
 @app.route('/api/v1/login/', methods=['POST'])
 def login():
-    username = request.json['username']
+    username = request.json['email']
     password = request.json['password']
     creds_list = [username,password]
     success = check_creds(creds_list)
