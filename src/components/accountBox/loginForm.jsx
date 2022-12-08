@@ -34,8 +34,9 @@ export function LoginForm(props) {
   const handleClick = async event => {
     event.preventDefault();
     const result = await 
+    
     // Send data to the backend via POST
-    fetch('http://localhost:8080/login', {  // Enter your IP address here
+    fetch('http://localhost:5001/api/v1/login/', {  // Enter your IP address here
 
       method: 'POST', 
       mode: 'cors', 
