@@ -97,10 +97,9 @@ export function SignupForm(props) {
     }
   };
 
-
-
   const getS3Url= url=>{
     setS3Url(url)
+    alert("Picture Uploaded!")
     console.log(s3url)
   }
   
@@ -111,12 +110,39 @@ export function SignupForm(props) {
         setLatlng({lat:lat,long:lng});
         //alert(latLng.lat+" "+latLng.long)
         alert(lat+" "+lng)
+        const request={ "person":{
+          "name":fullname,
+          "place":address1+","+address2,
+          "location":[lat,lng],
+          "email":email,
+          "ethnicity":"white",
+          "interested_ethnicity":[userinfo.response],
+          "interests":[userint.res],
+          "gender":gender,
+          "gender_interest":"both",
+          "age":age,
+          "imageUrl":s3url,
+          "password":password
+        
+        }
+          
+        }
 
+        
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(request)
+      };
+      fetch('http://localhost:5001/api/v1/register/', requestOptions)
+          .then(response => response.json())
+          
       },
       (error) => {
         console.error(error);
       }
     );
+    switchToSignin()
   };
 
  
@@ -129,8 +155,17 @@ export function SignupForm(props) {
         <Input type="text" placeholder="Full Name" onChange={event => setFullname(event.target.value)} value={fullname}/>
         <Input type="text" placeholder="Address Line 1"  onChange={event => setAddress1(event.target.value)} value={address1}/>
         <Input type="text" placeholder="Address Line 2"  onChange={event => setAddress2(event.target.value)} value={address2}/>
-        <label>Ethinicity interested in</label>
-           
+        <label>Your Ethinicity</label>
+        <select onChange={event => setEthinicity(event.target.value)} value={ethinicity}>
+          <option selected value="Native American">Native American</option>
+          <option value="Asian">Asian</option>
+          <option value="Black">Black</option>
+          <option value="Hispanic">Hispanic</option>
+          <option value="White">Hispanic</option>
+          <option value="Pacific Islander">Pacific Islander</option> 
+        </select>
+
+        <label>Ethinicity interested in</label>  
         Native American<input  type='checkbox' id="flexCheckDefault" value="Native American" onChange={handleEthChange}/>
         Asian<input  type='checkbox' id="flexCheckDefault" value="Asian" onChange={handleEthChange}/>
         Black<input  type='checkbox' id="flexCheckDefault" value="Black" onChange={handleEthChange}/>
@@ -138,7 +173,7 @@ export function SignupForm(props) {
         White<input  type='checkbox' id="flexCheckDefault" value="White" onChange={handleEthChange}/>
         Pacific Islander<input  type='checkbox' id="flexCheckDefault" value="Pacific Islander" onChange={handleEthChange}/>
        
-        <label>Gender</label>
+        <label>Looking For</label>
         <select onChange={event => setGender(event.target.value)} value={gender}>
           <option value="Male">Men</option>
           <option value="Female">Women</option>
