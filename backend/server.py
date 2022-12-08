@@ -45,7 +45,7 @@ def set_genderInterest():
 
 
 @app.route('/api/v1/setEthnicityInterest/', methods=['POST'])
-def set_genderInterest():
+def set_ethnicityInterest():
     person_id = request.json['_id']
     filters = request.json['ethnicity_interest']
     personObj = add_filters(person_id,filters)
