@@ -60,7 +60,11 @@ def login():
         person = get_person_data(creds_list)
         return Response(response=person, status=200, mimetype="application/json")
     else:
-        return Response(response="User not found!", status=404, mimetype="application/json")
+        response = {
+            "error":"User not found"
+        }
+        jsonObj = json.dumps(response)
+        return Response(response=jsonObj, status=404, mimetype="application/json")
         
 
 @app.route('/api/v1/getSimilarPeople/', methods=['POST']) 
