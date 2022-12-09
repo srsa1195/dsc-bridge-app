@@ -13,7 +13,7 @@ def insert_person_data(person_data):
     "Name" : person_data['Name'],
     "Address" :  person_data['Address'],
     "Location" : person_data['Location'],
-    "Email id" : person_data['Email id'],
+    "Email_id" : person_data['Email_id'],
     "Ethnicity" : person_data['Ethnicity'] ,
     "Interested_Ethnicity" : person_data['Interested_Ethnicity'],
     "Interests" : person_data['Interests'] ,
@@ -30,8 +30,8 @@ def returnObjectId(id):
 def get_person_data(person_details):
     collection_name = dbname["people_database"]
     print("Query email: ")
-    print(person_details['Email id'])
-    myquery = {"Email id" : person_details['Email id']}
+    print(person_details['Email_id'])
+    myquery = {"Email_id" : person_details['Email_id']}
     mydoc = collection_name.find(myquery)
     print(mydoc[0])
     obj = bson.json_util.dumps(mydoc[0])
@@ -60,7 +60,7 @@ def  get_person_by_id(person_id):
 
 def add_image(imageUrl,person_data):
     collection_name = dbname["people_database"]
-    myquery = {"Email id" : person_data['email']}
+    myquery = {"Email_id" : person_data['Email_id']}
     newvalue = { "$set": { "image_url": imageUrl } }
     collection_name.update_one(myquery,newvalue)
 
@@ -72,7 +72,7 @@ def add_filters(person_id,filters):
 
 
 def check_creds(person_data):
-    myquery = {"email" : person_data['Email id'], "password" : person_data['password']}
+    myquery = {"Email_id" : person_data['Email_id'], "password" : person_data['password']}
     collection_name = dbname['login_database']
     mydoc = collection_name.find(myquery)
     if (pd.isnull(mydoc)):
@@ -83,10 +83,10 @@ def check_creds(person_data):
 
 def add_creds(person_data):
     collection_name = dbname["login_database"]
-    print(person_data['email'])
+    print(person_data['Email_id'])
     print(person_data['password'])
     creds = {
-        "email" : person_data['email'],
+        "Email_id" : person_data['Email_id'],
         "password" : person_data['password']
     }
     collection_name.insert_one(creds)
