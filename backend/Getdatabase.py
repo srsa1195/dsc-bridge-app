@@ -1,12 +1,13 @@
 import pandas as pd
 import bson.json_util
+import json
 from bson.objectid import ObjectId
 from Database import get_database
 dbname = get_database()
 
 
 def insert_person_data(person_data):
-    if(person_data['Gender_Interest']==['both']):
+    if(person_data['Gender_Interest']=='both'):
         person_data['Gender_Interest']=['female','male']
     collection_name = dbname["people_database"]
     person_1 = {
@@ -95,7 +96,9 @@ def add_creds(person_data):
     collection_name.insert_one(creds)
 
 
-def find_similar_data(params):
+def find_similar_data(id):
+    params = get_person_by_id(id)
+    params = json.loads(params)
     self_ethnicity = params['Ethnicity']
     self_gender = params['Gender']
     gender_interest = params['Gender_Interest']
