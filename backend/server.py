@@ -4,7 +4,7 @@ import base64
 import bson.json_util
 from flask import Flask, request, Response
 from bson.json_util import loads, dumps
-from Getdatabase import check_creds , insert_person_data , add_creds , get_person_data , add_filters , add_gender_interest , add_ethnicity_interest
+from Getdatabase import check_creds , insert_person_data , add_creds , get_person_data , add_filters , add_gender_interest , add_ethnicity_interest , find_similar_data
 import jsonpickle, pickle
 import platform
 import io, os, sys
@@ -63,8 +63,15 @@ def login():
         return Response(response="User not found!", status=404, mimetype="application/json")
         
 
-#@app.route('/api/v1/getSimilarPeople/', methods=['POST']) 
-#def getSimilarPeople():
+@app.route('/api/v1/getSimilarPeople/', methods=['POST']) 
+def getSimilarPeople():
+    params = {"Interested_Ethnicity":request.json['Interested_Ethnicity'],
+              "Gender_Interest":request.json['Gender_Interest'],
+              "Interests":request.json['Interests'],
+              "Gender":request.json['Gender'],
+              "Ethnicity":request.json['Ethnicity']}
+    similarPeople = find_similar_data(params=params)
+    return Response(response=similarPeople, status=200, mimetype="application/json")
     #fetch similar interest people from database and then return the set of people as response
         
 
