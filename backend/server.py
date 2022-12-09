@@ -52,9 +52,9 @@ def set_ethnicityInterest():
 
 @app.route('/api/v1/login/', methods=['POST'])
 def login():
-    username = request.json['Email id']
+    username = request.json['Email_id']
     password = request.json['password']
-    creds_list = {"Email id":username,"password":password}
+    creds_list = {"Email_id":username,"password":password}
     success = check_creds(creds_list)
     person = get_person_data(creds_list)
     if(success==True):
