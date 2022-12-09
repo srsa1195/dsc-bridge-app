@@ -73,14 +73,9 @@ def login():
 
 @app.route('/api/v1/getSimilarPeople/', methods=['POST']) 
 def getSimilarPeople():
-    params = {"Interested_Ethnicity":request.json['Interested_Ethnicity'],
-              "Gender_Interest":request.json['Gender_Interest'],
-              "Interests":request.json['Interests'],
-              "Gender":request.json['Gender'],
-              "Ethnicity":request.json['Ethnicity']}
-    similarPeople = find_similar_data(params=params)
+    person_id = request.json['_id']['$oid']
+    similarPeople = find_similar_data(person_id)
     return Response(response=similarPeople, status=200, mimetype="application/json")
-    #fetch similar interest people from database and then return the set of people as response
         
 
 app.run(host="0.0.0.0", port=5001)
