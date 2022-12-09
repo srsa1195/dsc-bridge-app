@@ -77,7 +77,8 @@ def check_creds(person_data):
     myquery = {"email" : person_data['email'], "password" : person_data['password']}
     collection_name = dbname['login_database']
     mydoc = collection_name.find(myquery)
-    if (pd.isnull(mydoc)):
+    l = list(mydoc)
+    if(l==[]):
         return False
     else :
         return True
