@@ -10,17 +10,17 @@ def insert_person_data(person_data):
         person_data['gender']=['female','male']
     collection_name = dbname["people_database"]
     person_1 = {
-    "Name" : person_data['name'],
-    "Address" :  person_data['place'],
-    "Location" : person_data['location'],
-    "Email id" : person_data['email'],
-    "Ethnicity" : person_data['ethnicity'] ,
-    "Interested_Ethnicity" : person_data['interested_ethnicity'],
-    "Interests" : person_data['interests'] ,
-    "Gender" : person_data['gender'] ,
-    "Gender_Interest" : person_data['gender_interest'],
-    "Age" : person_data['age'],
-    "image_url" : person_data['imageUrl']
+    "Name" : person_data['Name'],
+    "Address" :  person_data['Address'],
+    "Location" : person_data['Location'],
+    "Email id" : person_data['Email id'],
+    "Ethnicity" : person_data['Ethnicity'] ,
+    "Interested_Ethnicity" : person_data['Interested_Ethnicity'],
+    "Interests" : person_data['Interests'] ,
+    "Gender" : person_data['Gender'] ,
+    "Gender_Interest" : person_data['Gender_Interest'],
+    "Age" : person_data['Age'],
+    "image_url" : person_data['image_url']
     }
     collection_name.insert_one(person_1)
 
@@ -30,8 +30,8 @@ def returnObjectId(id):
 def get_person_data(person_details):
     collection_name = dbname["people_database"]
     print("Query email: ")
-    print(person_details['email'])
-    myquery = {"Email id" : person_details['email']}
+    print(person_details['Email id'])
+    myquery = {"Email id" : person_details['Email id']}
     mydoc = collection_name.find(myquery)
     print(mydoc[0])
     obj = bson.json_util.dumps(mydoc[0])
@@ -93,13 +93,16 @@ def add_creds(person_data):
 
 
 def find_similar_data(params):
-    gender_interest = params['gender']
-    ethnicity_interest = params['ethnicity']
-    interests = params['interests']
+    self_ethnicity = params['Ethnicity']
+    self_gender = params['Gender']
+    gender_interest = params['Gender_Interest']
+    ethnicity_interest = params['Interested_Ethnicity']
+    interests = params['Interests']
     collection_name = dbname["people_database"]
-    similar_people = collection_name.find({"Gender":gender_interest})
-    #will return json object array
-    return similar_people
+    similar_people = collection_name.find({"$or":[{"Gender":{"$in":list(gender_interest)}},{"Ethnicity":{"$in":ethnicity_interest}},
+    {"Interests":{"$in":interests}},{"Interested_Ethnicity":self_ethnicity},{"Gender_Interest":self_gender}]})
+    obj = bson.json_util.dumps(similar_people)
+    return obj
 
 
 
@@ -108,12 +111,13 @@ if __name__ == "__main__":
     #,'gender_interest':'male','age':23,'username':'hkalmath','password':'123456'}
     #insert_person_data(person_data=person_data)
     #add_creds(person_data=person_data)
-    #params = {"gender":"female","ethnicity":["asian","white"],"interests":["cooking","dancing"]}
-    #docs = find_similar_data(params)
-    #print(list(docs))
+    params = {"gender":"female","ethnicity":["asian","white"],"interests":["cooking","dancing"]
+    ,"self_ethnicity":"white","self_gender":["male"]}
+    docs = find_similar_data(params)
+    print(list(docs))
     #for doc in docs:
     #    print(doc)
-    get_person_data({"email":"abc@gmail.com","password":"abc@123"})
+    #get_person_data({"email":"abc@gmail.com","password":"abc@123"})
     #get_person_by_id()
 
 
