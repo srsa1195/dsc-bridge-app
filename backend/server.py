@@ -56,8 +56,8 @@ def login():
     password = request.json['password']
     creds_list = {"email":username,"password":password}
     success = check_creds(creds_list)
-    person = get_person_data(creds_list)
     if(success==True):
+        person = get_person_data(creds_list)
         return Response(response=person, status=200, mimetype="application/json")
     else:
         return Response(response="User not found!", status=404, mimetype="application/json")
