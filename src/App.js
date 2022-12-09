@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import { AccountBox } from "./components/accountBox";
-import MapBox from "./components/Map/Map";
+import MapBox from "./components/Map/MyMap";
 
 const AppContainer = styled.div`
   width: 100%;
