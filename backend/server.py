@@ -24,7 +24,11 @@ def add_person_data():
     person_details = request.json['person']
     insert_person_data(person_details)
     add_creds(person_details)
-    return Response(response="User added successfully!", status=200, mimetype="application/json")
+    response = {
+            "Success!":"Registered"
+        }
+    jsonObj = json.dumps(response)
+    return Response(response=response, status=200, mimetype="application/json")
     
 
 @app.route('/api/v1/setFilter/', methods=['POST'])
