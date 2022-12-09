@@ -1,7 +1,8 @@
 from pymongo import MongoClient
+import certifi
 
 CONNECTION_STRING = "mongodb+srv://harshakalmath:Neelkamal202%23@cluster0.sxqdaoi.mongodb.net/test"
-client = MongoClient(CONNECTION_STRING)
+client = MongoClient(CONNECTION_STRING, tlsCAFile=certifi.where())
 
 def get_database():
    # Create the database for our example (we will use the same database throughout the tutorial

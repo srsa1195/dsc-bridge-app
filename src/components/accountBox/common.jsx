@@ -50,6 +50,21 @@ export const Input = styled.input`
     border-bottom: 2px solid rgb(241, 196, 15);
   }
 `;
+export const Label = styled.a`
+  font-size: 15px;
+  color: rgb(241, 196, 15);
+  font-weight: 500;
+  text-decoration: none;
+  margin: 0 4px;
+`;
+export const Label1 = styled.a`
+  font-size: 13px;
+  color: rgb(241, 196, 15);
+  font-weight: 500;
+  text-decoration: none;
+  margin: 0 4px;
+`;
+
 
 export const SubmitButton = styled.button`
   width: 100%;
