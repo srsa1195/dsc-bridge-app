@@ -6,6 +6,8 @@ import {
   BoxContainer,
   FormContainer,
   Input,
+  Label,
+  Label1,
   MutedLink,
   SubmitButton,
 } from "./common";
@@ -151,11 +153,11 @@ export function SignupForm(props) {
     <form>
     <BoxContainer>
       <FormContainer >
-
         <Input type="text" placeholder="Full Name" onChange={event => setFullname(event.target.value)} value={fullname}/>
         <Input type="text" placeholder="Address Line 1"  onChange={event => setAddress1(event.target.value)} value={address1}/>
         <Input type="text" placeholder="Address Line 2"  onChange={event => setAddress2(event.target.value)} value={address2}/>
-        <label>Your Ethinicity</label>
+        <Marginer direction="vertical" margin="0.6em" />
+        <Label>Your Ethinicity</Label>
         <select onChange={event => setEthinicity(event.target.value)} value={ethinicity}>
           <option selected value="Native American">Native American</option>
           <option value="Asian">Asian</option>
@@ -164,31 +166,32 @@ export function SignupForm(props) {
           <option value="White">Hispanic</option>
           <option value="Pacific Islander">Pacific Islander</option> 
         </select>
-
-        <label>Ethinicity interested in</label>  
-        Native American<input  type='checkbox' id="flexCheckDefault" value="Native American" onChange={handleEthChange}/>
-        Asian<input  type='checkbox' id="flexCheckDefault" value="Asian" onChange={handleEthChange}/>
-        Black<input  type='checkbox' id="flexCheckDefault" value="Black" onChange={handleEthChange}/>
-        Hispanic<input  type='checkbox' id="flexCheckDefault" value="Hispanic" onChange={handleEthChange}/>
-        White<input  type='checkbox' id="flexCheckDefault" value="White" onChange={handleEthChange}/>
-        Pacific Islander<input  type='checkbox' id="flexCheckDefault" value="Pacific Islander" onChange={handleEthChange}/>
-       
-        <label>Looking For</label>
+        <Marginer direction="vertical" margin="0.6em" />
+        <Label>Ethinicity interested in</Label>  
+        <Label1>Native American<input type='checkbox' id="flexCheckDefault" value="Native American" onChange={handleEthChange}/></Label1>
+        <Label1>Asian<input  type='checkbox' id="flexCheckDefault" value="Asian" onChange={handleEthChange}/></Label1>
+        <Label1>Black<input  type='checkbox' id="flexCheckDefault" value="Black" onChange={handleEthChange}/></Label1>
+        <Label1>Hispanic<input  type='checkbox' id="flexCheckDefault" value="Hispanic" onChange={handleEthChange}/></Label1>
+        <Label1>White<input  type='checkbox' id="flexCheckDefault" value="White" onChange={handleEthChange}/></Label1>
+        <Label1>Pacific Islander<input  type='checkbox' id="flexCheckDefault" value="Pacific Islander" onChange={handleEthChange}/></Label1>
+        <Marginer direction="vertical" margin="0.6em" />
+        <Label>Looking For</Label>
         <select onChange={event => setGender(event.target.value)} value={gender}>
           <option value="Male">Men</option>
           <option value="Female">Women</option>
           <option selected value="Transgender">Transgender</option>
         </select>
+        <Marginer direction="vertical" margin="0.6em" />
         <Input type="text" placeholder="Age" onChange={event => setAge(event.target.value)} value={age}/>
+        <Label>Upload Profile Picture</Label>
         <UploadImageToS3WithNativeSdk handleS3Url={getS3Url} > </UploadImageToS3WithNativeSdk>
-        <label>Interested In</label>
+        <Label>Interested In</Label>
         <select>
           <option value="Men">Men</option>
           <option value="Women">Women</option>
           <option selected value="Both">Both</option>
         </select>
         <label>Your Interests</label>
-           
            Reading<input  type='checkbox' id="IntDefault" value="Reading" onChange={handleIntChange}/>
            Hiking<input  type='checkbox' id="IntDefault" value="Hiking" onChange={handleIntChange}/>
            Workout<input  type='checkbox' id="IntDefault" value="Workout" onChange={handleIntChange}/>
