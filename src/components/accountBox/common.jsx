@@ -7,6 +7,10 @@ export const BoxContainer = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
+export const sideBySide = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const FormContainer = styled.form`
   width: 100%;
@@ -20,6 +24,8 @@ export const MutedLink = styled.a`
   color: rgba(200, 200, 200, 0.8);
   font-weight: 500;
   text-decoration: none;
+  padding-bottom: ${({ margin1 }) =>
+  typeof margin1 === "string" ? margin1 : `${margin1}px`};
 `;
 
 export const BoldLink = styled.a`
@@ -52,7 +58,8 @@ export const Input = styled.input`
 `;
 export const Label = styled.a`
   font-size: 15px;
-  color: rgb(241, 196, 15);
+  color: rgb(0,0 ,0 );
+  // color: rgb(241, 196, 15);
   font-weight: 500;
   text-decoration: none;
   margin: 0 4px;
