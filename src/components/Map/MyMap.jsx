@@ -4,6 +4,8 @@
 import React, {useState, useEffect} from "react";
 import {  MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from "leaflet";
+import './MyMap.css'
+
 //import marker from 'https://dcscprojectbucket.s3.us-west-1.amazonaws.com/kristenImage.jpeg'
 
 function GetIcon(_iconSize){
@@ -15,6 +17,11 @@ function GetIcon(_iconSize){
 
 function MyMap() {
 
+  document.body.style = 'background: rgb(241,196,15)';
+
+
+
+
 const [usersinfo, setUsersInfo] = useState();
 
 const position = [45.3, -75.7]
@@ -25,6 +32,8 @@ const request={
       "$oid": "6393b525ffe568ef632d8593"
   }
 }
+
+
 
 const getApiData = async () => {
 
@@ -55,7 +64,7 @@ useEffect(() => {
 
   return (
     
-    <MapContainer center={[45.4, -75.7]} zoom={11}scrollWheelZoom={false}>
+    <MapContainer style={{border: "10px solid white"}}center={[45.4, -75.7]} zoom={11}scrollWheelZoom={false} >
       <TileLayer
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -73,6 +82,7 @@ useEffect(() => {
   
       
     </MapContainer>
+    
 );
 }
 
