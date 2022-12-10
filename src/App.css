@@ -35,10 +35,7 @@
 .App-link {
   color: #61dafb;
 }
-.leaflet-container {
-  width: 70%;
-  height: 100vh;
-}
+
 
 @keyframes App-logo-spin {
   from {

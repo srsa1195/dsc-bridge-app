@@ -15,7 +15,7 @@ function GetIcon(_iconSize){
 
 function MyMap() {
 
-const [users, setUsers] = useState();
+const [usersinfo, setUsersInfo] = useState();
 
 const position = [45.3, -75.7]
 const pos = [45.4, -75.7]
@@ -34,14 +34,13 @@ const getApiData = async () => {
     body: JSON.stringify(request)
 };
 
-alert("inside getAPIData")
   const response = await fetch(
     "http://localhost:5001/api/v1/getSimilarPeople/", requestOptions
   ).then((response) => response.json());
 
   // update the state
-  alert(response)
-  setUsers(response);
+  setUsersInfo(response)
+  
   
 };
 
@@ -50,10 +49,12 @@ var names = [{latLng:pos, un:"Kristen Stewart!"},{latLng:position, un:"Anne Hath
 useEffect(() => {
   
   getApiData();
+  
 
 }, []);
 
   return (
+    
     <MapContainer center={[45.4, -75.7]} zoom={11}scrollWheelZoom={false}>
       <TileLayer
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
