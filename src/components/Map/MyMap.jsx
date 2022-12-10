@@ -93,7 +93,7 @@ useEffect(() => {
                             <div > Email Id: {user.email}</div>
                             <div > Ethnicity:{user.Ethnicity}</div>
                             <div><label>Interests:-</label></div>
-                            <ul>
+                            <ul className="list-class">
                               {user.Interests.map(function(int,index){
                                 return <li>{int}</li>
                               })}

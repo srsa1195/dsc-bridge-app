@@ -2,16 +2,16 @@
   text-align: center;
 }
 .out-div{
-  width: 68%;
+  width: 50%;
   margin: 0 auto;
   
   
 }
 
 .outer-div {
-  color: rgba(243,172,18,1);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
 }
 .img-class{
   border-radius: 50%;
@@ -19,3 +19,7 @@
   
 }
 
+.list-class{
+  padding-left: 35%;
+  margin-top:0px
+}
