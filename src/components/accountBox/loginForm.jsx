@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import {
   BoldLink,
   BoxContainer,
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 export function LoginForm(props) {
   const navigate = useNavigate();
   const { switchToSignup } = useContext(AccountContext);
+  const [userData, setUserData]=useState(null)
   const [user, setUser] = useState({email: "", password: ""}); 
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -48,7 +49,11 @@ export function LoginForm(props) {
     })
     const resultInJSON = await result.json()
     console.log(resultInJSON)
-    navigate('/map');
+    setUserData(resultInJSON)
+    props.history.push({ 
+      pathname: '/map',
+      state: "hello"
+     });
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
