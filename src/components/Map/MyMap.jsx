@@ -17,15 +17,12 @@ function GetIcon(_iconSize){
 
 function MyMap() {
 
-  document.body.style = 'background: rgb(241,196,15)';
+document.body.style = 'background: rgb(241,196,15)';
+ 
+const [usersinfo, setUsersInfo] = useState([]);
+const [latLng, setLatLng]=useState()
 
 
-
-
-const [usersinfo, setUsersInfo] = useState();
-
-const position = [45.3, -75.7]
-const pos = [45.4, -75.7]
 
 const request={
   "_id": {
@@ -45,36 +42,46 @@ const getApiData = async () => {
 
   const response = await fetch(
     "http://localhost:5001/api/v1/getSimilarPeople/", requestOptions
-  ).then((response) => response.json());
+  ).then((response) => response.json())
+var array=[]
+for (var i=0; i<response.length; i++)
+    {
+        array.push(response[i].Location)
+    }
+
 
   // update the state
-  setUsersInfo(response)
-  
-  
+ console.log(JSON.stringify(array))
+ setLatLng(array)
+ setUsersInfo(response)
+ 
+
 };
 
-var names = [{latLng:pos, un:"Kristen Stewart!"},{latLng:position, un:"Anne Hathaway!"}];
+//var names = [{latLng:pos, un:"Kristen Stewart!"},{latLng:position, un:"Anne Hathaway!"}];
+
 
 useEffect(() => {
   
   getApiData();
+
+
   
 
 }, []);
 
   return (
     
-    <MapContainer style={{border: "10px solid white"}}center={[45.4, -75.7]} zoom={11}scrollWheelZoom={false} >
+    latLng &&
+    <MapContainer style={{border: "10px solid white"}} bounds={[latLng]} zoom={7}scrollWheelZoom={false} >
       <TileLayer
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
-      {names.map(function(name, index){
-                    return <Marker position={name.latLng}>
+      {usersinfo.map(function(user, index){
+                    return <Marker position={user.Location}>
                            <Popup>
-                            {name.un} 
-                            <img src={'https://dcscprojectbucket.s3.us-west-1.amazonaws.com/kristenImage.jpeg'} style={{ width: 50, height: 60}} />
-
+                            <img src={user.image_url} style={{ width: 50, height: 60}} />
                            </Popup>
                            </Marker>
        
