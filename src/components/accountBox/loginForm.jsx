@@ -49,6 +49,7 @@ export function LoginForm(props) {
     })
     const resultInJSON = await result.json()
     console.log(resultInJSON)
+    navigate('/map');
     setUserData(resultInJSON)
     props.history.push({ 
       pathname: '/map',
