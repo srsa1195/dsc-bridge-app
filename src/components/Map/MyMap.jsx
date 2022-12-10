@@ -4,7 +4,8 @@
 import React, {useState, useEffect} from "react";
 import {  MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from "leaflet";
-import './MyMap.css'
+import './MyMap.css';
+
 
 //import marker from 'https://dcscprojectbucket.s3.us-west-1.amazonaws.com/kristenImage.jpeg'
 
@@ -16,6 +17,9 @@ function GetIcon(_iconSize){
 }
 
 function MyMap() {
+
+
+
 
 document.body.style = 'background: rgb(241,196,15)';
  
@@ -73,7 +77,7 @@ useEffect(() => {
   return (
     
     latLng &&
-    <MapContainer style={{border: "10px solid white"}} bounds={[latLng]} zoom={7}scrollWheelZoom={false} >
+    <MapContainer style={{border: "10px solid white"}} bounds={[latLng]} zoom={4} scrollWheelZoom={false} >
       <TileLayer
          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -81,7 +85,22 @@ useEffect(() => {
       {usersinfo.map(function(user, index){
                     return <Marker position={user.Location}>
                            <Popup>
-                            <img src={user.image_url} style={{ width: 50, height: 60}} />
+                            <div className="outer-div">
+                            <div className="out-div">
+                            <img  className="img-class" src={user.image_url} style={{ width: 100, height: 100 }} />
+                            </div>
+                            <div > Name: {user.Name}</div>
+                            <div > Email Id: {user.email}</div>
+                            <div > Ethnicity:{user.Ethnicity}</div>
+                            <div><label>Interests:-</label></div>
+                            <ul>
+                              {user.Interests.map(function(int,index){
+                                return <li>{int}</li>
+                              })}
+                            </ul>
+                            
+                            
+                            </div>
                            </Popup>
                            </Marker>
        

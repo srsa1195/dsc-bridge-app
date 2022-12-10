@@ -1,3 +1,21 @@
-.body {
-  background: rgb(241,196,15);
+.text-div{
+  text-align: center;
 }
+.out-div{
+  width: 68%;
+  margin: 0 auto;
+  
+  
+}
+
+.outer-div {
+  color: rgba(243,172,18,1);
+  font-size: 14px;
+  font-weight: 400;
+}
+.img-class{
+  border-radius: 50%;
+  border: 4px solid rgba(243,172,18,1);
+  
+}
+
