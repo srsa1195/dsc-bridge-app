@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 import {  MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from "leaflet";
 import './MyMap.css';
+import { ReactSession } from 'react-client-session';
 
 
 //import marker from 'https://dcscprojectbucket.s3.us-west-1.amazonaws.com/kristenImage.jpeg'
@@ -30,14 +31,14 @@ const [latLng, setLatLng]=useState()
 
 const request={
   "_id": {
-      "$oid": "6393b525ffe568ef632d8593"
+      "$oid": ReactSession.get("username")
   }
 }
 
 
 
 const getApiData = async () => {
-
+  alert(ReactSession.get("username"))
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

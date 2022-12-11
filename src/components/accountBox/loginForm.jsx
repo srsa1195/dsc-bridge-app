@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { set, useForm } from "react-hook-form";
+import { ReactSession } from 'react-client-session';
 import {
   BoldLink,
   BoxContainer,
@@ -12,6 +13,7 @@ import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import { useNavigate } from "react-router-dom";
 export function LoginForm(props) {
+ 
   const navigate = useNavigate();
   const { switchToSignup } = useContext(AccountContext);
   const [userData, setUserData]=useState(null)
@@ -49,12 +51,15 @@ export function LoginForm(props) {
     })
     const resultInJSON = await result.json()
     console.log(resultInJSON)
+    ReactSession.set("username", resultInJSON._id.$oid);
+    ReactSession.set("imageURL", resultInJSON._id.image_url);
+    
+    
     navigate('/map');
-    setUserData(resultInJSON)
-    props.history.push({ 
-      pathname: '/map',
-      state: "hello"
-     });
+
+    
+
+    
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
