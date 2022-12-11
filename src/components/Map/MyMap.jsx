@@ -12,7 +12,7 @@ import { ReactSession } from 'react-client-session';
 
 function GetIcon(_iconSize){
     return L.icon({
-        iconUrl:require('./kristenImage.jpeg'),
+        iconUrl:require('./man.svg'),
         iconSize:[_iconSize]
     })
 }
@@ -20,12 +20,13 @@ function GetIcon(_iconSize){
 function MyMap() {
 
 
-
+  //alert(ReactSession.get("imageURL"))
 
 document.body.style = 'background: rgb(241,196,15)';
  
 const [usersinfo, setUsersInfo] = useState([]);
 const [latLng, setLatLng]=useState()
+
 
 
 
@@ -38,7 +39,7 @@ const request={
 
 
 const getApiData = async () => {
-  alert(ReactSession.get("username"))
+  
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -56,7 +57,7 @@ for (var i=0; i<response.length; i++)
 
 
   // update the state
- console.log(JSON.stringify(array))
+ 
  setLatLng(array)
  setUsersInfo(response)
  
@@ -75,8 +76,10 @@ useEffect(() => {
 
 }, []);
 
-  return (
+  return [
     
+    latLng &&
+    <div className="top-div"><img  className="img-class-2" src={ReactSession.get("imageURL")} style={{ width: 100, height: 100 }}/><h2 className="txt-css">Hello {ReactSession.get("name")}, Happy Bridging!</h2></div>,
     latLng &&
     <MapContainer style={{border: "10px solid white"}} bounds={[latLng]} zoom={4} scrollWheelZoom={false} >
       <TileLayer
@@ -84,7 +87,7 @@ useEffect(() => {
          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {usersinfo.map(function(user, index){
-                    return <Marker position={user.Location}>
+                    return <Marker position={user.Location}  >
                            <Popup>
                             <div className="outer-div">
                             <div className="out-div">
@@ -110,7 +113,7 @@ useEffect(() => {
       
     </MapContainer>
     
-);
+                ];
 }
 
 export default MyMap

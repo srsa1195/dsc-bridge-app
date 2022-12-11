@@ -18,8 +18,21 @@
   border: 4px solid rgba(243,172,18,1);
   
 }
+.img-class-2{
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: -20%;
+  margin-left: -25%;
+}
 
 .list-class{
   padding-left: 35%;
   margin-top:0px
+}
+.top-div{
+  margin-bottom: 3%;
+}
+.txt-css{
+  color:white;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 }

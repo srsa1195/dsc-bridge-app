@@ -13,7 +13,7 @@ import { Marginer } from "../marginer";
 import { AccountContext } from "./accountContext";
 import { useNavigate } from "react-router-dom";
 export function LoginForm(props) {
- 
+  document.body.style = 'background: rgb(241,196,15)';
   const navigate = useNavigate();
   const { switchToSignup } = useContext(AccountContext);
   const [userData, setUserData]=useState(null)
@@ -52,7 +52,8 @@ export function LoginForm(props) {
     const resultInJSON = await result.json()
     console.log(resultInJSON)
     ReactSession.set("username", resultInJSON._id.$oid);
-    ReactSession.set("imageURL", resultInJSON._id.image_url);
+    ReactSession.set("imageURL", resultInJSON.image_url);
+    ReactSession.set("name", resultInJSON.Name);
     
     
     navigate('/map');
