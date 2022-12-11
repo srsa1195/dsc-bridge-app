@@ -136,7 +136,7 @@ export function SignupForm(props) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(request)
       };
-      fetch('http://localhost:5000/api/v1/register/', requestOptions)
+      fetch('http://34.83.153.51:5000/api/v1/register/', requestOptions)
           .then(response => response.json())
           
           
