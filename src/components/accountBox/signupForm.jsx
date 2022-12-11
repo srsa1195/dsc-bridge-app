@@ -21,6 +21,7 @@ import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 
 export function SignupForm(props) {
+  document.body.style = 'background: rgb(241,196,15)';
   const { switchToSignin } = useContext(AccountContext);
   const [s3url, setS3Url]=useState(null)
   const [fullname, setFullname]=useState(null)
@@ -135,7 +136,7 @@ export function SignupForm(props) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(request)
       };
-      fetch('http://localhost:5001/api/v1/register/', requestOptions)
+      fetch('http://localhost:5000/api/v1/register/', requestOptions)
           .then(response => response.json())
           
           

@@ -39,7 +39,7 @@ export function LoginForm(props) {
     const result = await 
     
     // Send data to the backend via POST
-    fetch('http://localhost:5001/api/v1/login/', {  // Enter your IP address here
+    fetch('http://localhost:5000/api/v1/login/', {  // Enter your IP address here
 
       method: 'POST', 
       mode: 'cors', 
@@ -50,14 +50,21 @@ export function LoginForm(props) {
 
     })
     const resultInJSON = await result.json()
-    console.log(resultInJSON)
+    console.log(JSON.stringify(resultInJSON))
+
+    if(resultInJSON.error!="User not found"){
     ReactSession.set("username", resultInJSON._id.$oid);
     ReactSession.set("imageURL", resultInJSON.image_url);
     ReactSession.set("name", resultInJSON.Name);
-    
-    
     navigate('/map');
-
+  
+    }
+    else{
+      alert("User Not Found!")
+    }
+    
+    
+    
     
 
     

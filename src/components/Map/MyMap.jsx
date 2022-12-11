@@ -47,7 +47,7 @@ const getApiData = async () => {
 };
 
   const response = await fetch(
-    "http://localhost:5001/api/v1/getSimilarPeople/", requestOptions
+    "http://localhost:5000/api/v1/getSimilarPeople/", requestOptions
   ).then((response) => response.json())
 var array=[]
 for (var i=0; i<response.length; i++)
