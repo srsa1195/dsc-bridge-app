@@ -78,5 +78,5 @@ def getSimilarPeople():
     return Response(response=similarPeople, status=200, mimetype="application/json")
         
 
-app.run(host="0.0.0.0", port=5001)
+app.run(ssl_context='adhoc', host="0.0.0.0", port=5000)
 
