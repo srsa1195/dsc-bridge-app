@@ -127,6 +127,7 @@ export function SignupForm(props) {
         }
           
         }
+        console.log(JSON.stringify())
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -134,6 +135,7 @@ export function SignupForm(props) {
       };
       fetch('http://localhost:5001/api/v1/register/', requestOptions)
           .then(response => response.json())
+          
           
       },
       (error) => {
