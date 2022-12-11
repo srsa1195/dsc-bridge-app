@@ -101,6 +101,7 @@ export function SignupForm(props) {
 
   const getS3Url= url=>{
     setS3Url(url)
+    
     alert("Picture Uploaded!")
     console.log(s3url)
   }
