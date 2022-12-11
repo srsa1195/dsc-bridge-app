@@ -31,10 +31,9 @@ export function SignupForm(props) {
   const [ethinicity, setEthinicity]=useState(null)
   const [email, setEmail]=useState(null)
   const [password, setPassword]=useState(null)
-  const [latLng, setLatlng] = useState({
-    lat:0,
-    long:0,
-  });
+  const [lookingFor, setLookingFor]=useState(null)
+  
+ 
  
   const [userinfo, setUserInfo] = useState({
     languages: [],
@@ -110,8 +109,6 @@ export function SignupForm(props) {
     Geocode.fromAddress(address1+""+address2).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        setLatlng({lat:lat,long:lng});
-        //alert(latLng.lat+" "+latLng.long)
         alert(lat+" "+lng)
         const request={ "person":{
           "name":fullname,
@@ -130,8 +127,6 @@ export function SignupForm(props) {
         }
           
         }
-
-        
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -188,7 +183,7 @@ export function SignupForm(props) {
         <Label1>Pacific Islander<input  type='checkbox' id="flexCheckDefault" value="Pacific Islander" onChange={handleEthChange}/></Label1>
         </div>
         <Marginer direction="vertical" margin="0.6em" />
-        <Label>Looking For</Label>
+        <Label>Gender</Label>
         <select onChange={event => setGender(event.target.value)} value={gender}>
           <option value="Male">Men</option>
           <option value="Female">Women</option>
@@ -198,7 +193,7 @@ export function SignupForm(props) {
         <Label>Upload Profile Picture</Label>
         <UploadImageToS3WithNativeSdk handleS3Url={getS3Url} > </UploadImageToS3WithNativeSdk>
         <Label>Interested In</Label>
-        <select>
+        <select onChange={event => setLookingFor(event.target.value)} value={lookingFor}>
           <option value="Men">Men</option>
           <option value="Women">Women</option>
           <option selected value="Both">Both</option>
