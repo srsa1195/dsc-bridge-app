@@ -111,18 +111,19 @@ export function SignupForm(props) {
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         alert(lat+" "+lng)
-        const request={ "person":{
-          "name":fullname,
-          "place":address1+","+address2,
-          "location":[lat,lng],
-          "email":email,
-          "ethnicity":"white",
-          "interested_ethnicity":[userinfo.response],
-          "interests":[userint.res],
-          "gender":gender,
-          "gender_interest":"both",
-          "age":age,
-          "imageUrl":s3url,
+        
+       const request={ "person":{
+          "Name":fullname,
+          "Address":address1+","+address2,
+          "Location":[lat,lng],
+          "Email":email,
+          "Ethnicity":"white",
+          "Interested_Ethnicity":[userinfo.response],
+          "Interests":[userint.res],
+          "Gender":gender,
+          "Gender_Interest":"both",
+          "Age":age,
+          "image_url":s3url,
           "password":password
         
         }
