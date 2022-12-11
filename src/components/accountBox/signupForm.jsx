@@ -116,7 +116,7 @@ export function SignupForm(props) {
           "Name":fullname,
           "Address":address1+","+address2,
           "Location":[lat,lng],
-          "Email":email,
+          "email":email,
           "Ethnicity":"white",
           "Interested_Ethnicity":[userinfo.response],
           "Interests":[userint.res],
