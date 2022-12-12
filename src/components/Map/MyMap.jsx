@@ -27,7 +27,7 @@ document.body.style = 'background: rgb(241,196,15)';
 const [usersinfo, setUsersInfo] = useState([]);
 const [latLng, setLatLng]=useState()
 
-
+const pinColor = '#000000';
 
 
 const request={
@@ -47,7 +47,7 @@ const getApiData = async () => {
 };
 
   const response = await fetch(
-    "http://34.83.153.51:5000/api/v1/getSimilarPeople/", requestOptions
+    "http://34.145.4.74:5000/api/v1/getSimilarPeople/", requestOptions
   ).then((response) => response.json())
 var array=[]
 for (var i=0; i<response.length; i++)
@@ -87,7 +87,7 @@ useEffect(() => {
          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
       {usersinfo.map(function(user, index){
-                    return <Marker position={user.Location}  >
+                    return <Marker  pinColor={pinColor} position={user.Location}  >
                            <Popup>
                             <div className="outer-div">
                             <div className="out-div">
