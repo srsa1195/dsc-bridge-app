@@ -39,7 +39,7 @@ export function LoginForm(props) {
     const result = await 
     
     // Send data to the backend via POST
-    fetch('http://34.83.153.51:5000/api/v1/login/', {  // Enter your IP address here
+    fetch('http://34.145.4.74:5000/api/v1/login/', {  // Enter your IP address here
 
       method: 'POST', 
       
